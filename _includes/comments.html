@@ -1,0 +1,17 @@
+{% assign comments = site.data.comments | sort | where: "comment.reply_to","include.reply_to" %}
+{%- for c in comments -%}
+{%- assign comment_id = c[0] -%}
+{%- assign comment = c[1] -%}
+
+<div class="comment" id="c{{- comment_id -}}">
+	<header>
+		<small>{{ comment.author | escape | strip_newlines }}</small> · <time datetime="{{ comment.time }}">{{ comment.time }}</time>
+	</header>
+	<p>{{ comment.text | escape | newline_to_br | strip_newlines | markdownify | replace: "&amp;#39;", "'" | replace: "&amp;quot;", '"' }}</div></p>
+	<details>
+		<summary>Reply</summary>
+		{%- include comment-form.html reply_to=comment_id -%}
+	</details>
+	{%- include comments.html reply_to=comment_id -%}
+</div>
+{%- endfor -%}
