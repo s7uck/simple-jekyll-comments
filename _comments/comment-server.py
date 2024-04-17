@@ -8,11 +8,11 @@ import time
 
 PORT = 9090
 COMMENTS_DIR = os.path.abspath(".")
-COMMENTS_FILENAME = "%s_%s.yaml"
+COMMENTS_FILENAME = "%s_%s.md"
 
 def comments_list(directory=COMMENTS_DIR):
     return list(
-        filter(lambda f: f.endswith(".yaml"), os.listdir(directory))
+        filter(lambda f: f.endswith(".md"), os.listdir(directory))
     )
 
 class Comment:

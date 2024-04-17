@@ -1,0 +1,21 @@
+<style>
+form {
+	display: -ms-flex;
+	display: flex;
+	flex-direction: column;
+	column-gap: 1em;
+	row-gap: 1em;
+	max-width: 350px;
+}
+form > * {
+	flex-grow: 1;
+}
+</style>
+<form action="/add-comment" method="POST">
+    <input type="hidden" name="reply_to" value="{{ include.reply_to }}">
+    <input type="text" name="author" placeholder="Name">
+    <input type="email" name="email" placeholder="Email">
+    <input type="date" name="time" hidden>
+    <textarea name="text" placeholder="Comment"></textarea>
+    <input type="submit">
+</form>
