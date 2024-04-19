@@ -1,15 +1,11 @@
-{% assign comments = site.comments | sort | where: "comment.reply_to","include.path" %}
+{% assign comments = site.comments | where_exp: "comment", "comment.reply_to == include.replying_to" %}
+<ol id="comments" class="column list">
 {% for comment in comments %}
-{{ comment }}
-<div class="comment">
-	<header>
-		<small>{{ comment.author }}</small> · <time datetime="{{ comment.time }}">{{ comment.time }}</time>
-	</header>
-	<p>{{ comment.content }}</div></p>
-	<details>
-		<summary>Reply</summary>
-		{%- include comment-form.html reply_to=comment_id -%}
-	</details>
-	{%- include comments.html reply_to=comment_id -%}
-</div>
+	<div class="comment" id="{{ comment.time }}">
+		<header>
+			<a href="/#{{ comment.time }}"><small>{{ comment.author }}</small> · <time datetime="{{ comment.time }}">{{ comment.time | date: "%-d %b %Y %H:%M:%S"  }}</time></a>
+		</header>
+		<p>{{ comment.content }}</p>
+	</div>
 {% endfor %}
+</ol>

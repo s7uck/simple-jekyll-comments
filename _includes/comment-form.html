@@ -11,7 +11,7 @@ form > * {
 	flex-grow: 1;
 }
 </style>
-<form action="/add-comment" method="POST">
+<form action="{{ site.url }}:9000/add-comment" method="POST">
     <input type="hidden" name="reply_to" value="{{ include.reply_to }}">
     <input type="text" name="author" placeholder="Name">
     <input type="email" name="email" placeholder="Email">
